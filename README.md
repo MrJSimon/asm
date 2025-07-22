@@ -2,7 +2,7 @@
 **asm** is an assisted 2D image segmentation tool built with Python. It employs a Random Forest classifier for pixel-wise segmentation and provides a full-featured GUI for semi-automated workflows.
 
 # Purpose
-ASM is designed for researchers and practitioners working in fields that utilize microscopy, scanning electron microscopy (SEM), and X-Ray imaging, where precise and efficient 2D segmentation is critical.
+**asm** is designed for researchers and practitioners working in fields that utilize microscopy, scanning electron microscopy (SEM), and X-Ray imaging, where precise and efficient 2D segmentation is critical.
 
 1. Quickly load and manage image datasets
 2. Create, edit, and organize training masks
@@ -65,14 +65,14 @@ To apply the trained model to multiple images:
 
 &nbsp;&nbsp;&nbsp;&nbsp; 5.1 Use the **Automation Manager** to select or deselect the images to be predicted  
 &nbsp;&nbsp;&nbsp;&nbsp; 5.2 Press the **Predict** button to apply the trained model to the selected images  
-&nbsp;&nbsp;&nbsp;&nbsp; 5.3 Lean back and relax while ASM processes the batch
+&nbsp;&nbsp;&nbsp;&nbsp; 5.3 Lean back and relax while **asm** processes the batch
 
 ### 📝 Step 6: Save Results
 Click the **save json** button to save the current session information in a 'config.json' file. The file contains all necessary metadata to restore the session later.
 
 
 # Visualizations
-**asm GUI**: Comparison of the GUI steps before and after using ASM to load images, add labels, and create masks:
+**asm GUI**: Comparison of the GUI steps before and after using **asm** to load images, add labels, and create masks:
 <p align="center">
   <img src="./docs/images/before_after_use.png" alt="GUI before input data" width="80%">
 </p>
@@ -96,7 +96,7 @@ Click the **save json** button to save the current session information in a 'con
 
 # Output Files
 
-During use, ASM generates and saves output files in the `output/` folder within the selected image directory.
+During use, **asm** generates and saves output files in the `output/` folder within the selected image directory.
 
 - The generated masks during paint segmentation are saved locally to `output/masks/`
 - The predictions from the Automation Manager are saved locally to `output/predictions/`
