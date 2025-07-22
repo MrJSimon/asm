@@ -1,3 +1,3 @@
 import asmgui as pkg
 
-pkg.ASM("Automated segmentation manager")
+pkg.ASM("Assisted segmentation manager")
