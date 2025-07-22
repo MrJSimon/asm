@@ -69,7 +69,14 @@ To apply the trained model to multiple images:
 &nbsp;&nbsp;&nbsp;&nbsp; 5.3 Lean back and relax while ASM processes the batch
 
 ### 📝 Step 6: Save Results
-Save prediction outputs and updated masks for further analysis using a .json file
+Click the **save json** to save the current session information i a '.json' file. The file contains all necessary metadata to restore the session later.
+
+- `filepath`: The working directory  
+- `images`: List of all loaded image paths  
+- `training images`: List of images used for training  
+- `training masks`: Paths to saved mask files  
+- `labels`: List of defined labels  
+- `features`: Selected features used for training
 
 
 
@@ -79,9 +86,49 @@ Save prediction outputs and updated masks for further analysis using a .json fil
 
 # Output Files
 
-| File Name                               | Description                                |
-|-----------------------------------------|--------------------------------------------|
-| ................................        | ...............................            |
+
+| File/Folder         | Description                                                        |
+|---------------------|--------------------------------------------------------------------|
+| `masks/`            | Contains all saved training masks in NumPy `.npy` format          |
+| `prediction/`       | Contains predicted segmentations for the selected images           |
+| `training_set.json` | JSON file with session metadata (file paths, labels, features, etc.)|
+
+---
+
+#### JSON File Structure
+The `training_set.json` file has the following structure:
+
+| Key               | Description                                                    |
+|--------------------|----------------------------------------------------------------|
+| `filepath`         | The working directory where images and masks are stored        |
+| `images`           | List of full paths to all loaded images                        |
+| `training images`  | List of full paths to images used for training                 |
+| `training masks`   | List of full paths to saved mask files                         |
+| `labels`           | List of defined label IDs (integers)                           |
+| `features`         | List of selected feature names used in the Random Forest model |
+
+---
+
+#### Example `training_set.json`
+```json
+{
+    "filepath": "C:\\your\\path\\to\\project\\example_images",
+    "images": [
+        "C:\\your\\path\\to\\project\\example_images\\image_196.png",
+        "... more images ..."
+    ],
+    "training images": [
+        "C:\\your\\path\\to\\project\\example_images\\image_236.png"
+    ],
+    "training masks": [
+        "C:\\your\\path\\to\\project\\example_images\\output\\masks\\image_236_mask.npy"
+    ],
+    "labels": [1, 2, 3, 4, 5],
+    "features": [
+        "denoise", "Canny Edge", "Scharr"
+    ]
+}
+
 
 
 # Documentation
