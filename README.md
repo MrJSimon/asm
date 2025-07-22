@@ -15,8 +15,7 @@ Install **asm** by cloning the repository onto your local machine using the foll
 
     git clone https://github.com/yourusername/asm.git
 
-## Requirements
-
+### Requirements
 This program was tested using
 
     python 3.10.9
@@ -48,7 +47,7 @@ To mask an image start by:
 &nbsp;&nbsp;&nbsp;&nbsp; **3.2** Press the brush tool button  
 &nbsp;&nbsp;&nbsp;&nbsp; **3.3** Guide the mouse to the main image window and paint on top of the image 
 
-Please note: ⚠️ The brush and eraser tool will only work on the image, not on the entire canvas.
+Please note that the brush and eraser tool will only work on the image, not on the entire canvas.
 
 ### 📊 Step 3: Select Features
 In the **Random Forest Classifier** panel, choose the features to include in training (e.g., Sobel, Canny Edge, Gaussian filters).
@@ -69,16 +68,7 @@ To apply the trained model to multiple images:
 &nbsp;&nbsp;&nbsp;&nbsp; 5.3 Lean back and relax while ASM processes the batch
 
 ### 📝 Step 6: Save Results
-Click the **save json** to save the current session information i a '.json' file. The file contains all necessary metadata to restore the session later.
-
-- `filepath`: The working directory  
-- `images`: List of all loaded image paths  
-- `training images`: List of images used for training  
-- `training masks`: Paths to saved mask files  
-- `labels`: List of defined labels  
-- `features`: Selected features used for training
-
-
+Click the **save json** button to save the current session information in a 'config.json' file. The file contains all necessary metadata to restore the session later.
 
 
 # Visualizations
@@ -86,17 +76,23 @@ Click the **save json** to save the current session information i a '.json' file
 
 # Output Files
 
+During use, ASM generates and saves output files in the `output/` folder within the selected image directory.
 
-| File/Folder         | Description                                                        |
-|---------------------|--------------------------------------------------------------------|
-| `masks/`            | Contains all saved training masks in NumPy `.npy` format          |
-| `prediction/`       | Contains predicted segmentations for the selected images           |
-| `training_set.json` | JSON file with session metadata (file paths, labels, features, etc.)|
+- The generated masks during paint segmentation are saved locally to `output/masks/`
+- The predictions from the Automation Manager are saved locally to `output/predictions/`
+
+The output folder structure looks like this:
+
+| File/Folder     | Description                                                        |
+|-----------------|--------------------------------------------------------------------|
+| `masks/`        | Contains all saved training masks in NumPy `.npy` format           |
+| `predictions/`   | Contains predicted segmentations for the selected images           |
+| `config.json`   | JSON file storing session metadata and configuration               |
 
 ---
 
 #### JSON File Structure
-The `training_set.json` file has the following structure:
+The `config.json` file has the following structure:
 
 | Key               | Description                                                    |
 |--------------------|----------------------------------------------------------------|
@@ -109,25 +105,26 @@ The `training_set.json` file has the following structure:
 
 ---
 
-#### Example `training_set.json`
+#### Example `config.json`
 ```json
 {
-    "filepath": "C:\\your\\path\\to\\project\\example_images",
+    "filepath": "...\\example_images",
     "images": [
-        "C:\\your\\path\\to\\project\\example_images\\image_196.png",
+        "...\\example_images\\image_196.png",
         "... more images ..."
     ],
     "training images": [
-        "C:\\your\\path\\to\\project\\example_images\\image_236.png"
+        "...\\example_images\\image_236.png"
     ],
     "training masks": [
-        "C:\\your\\path\\to\\project\\example_images\\output\\masks\\image_236_mask.npy"
+        "...\\example_images\\output\\masks\\image_236_mask.npy"
     ],
     "labels": [1, 2, 3, 4, 5],
     "features": [
         "denoise", "Canny Edge", "Scharr"
     ]
 }
+
 
 
 
