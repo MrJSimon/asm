@@ -1,16 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jul 22 09:41:37 2025
-
-@author: jeg_e
-"""
-"""The module loads images into the GUI for segmentation"""
-#import os
+## Load packages
 from pathlib import Path
 from tkinter import filedialog
 from tkinter import ttk
 import tkinter as tk
-#import numpy as np
 import json
 
 class JsonLoader(ttk.Frame):

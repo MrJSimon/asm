@@ -1,17 +1,14 @@
 """Main GUI setup"""
 import tkinter as tk
-import numpy as np
 import PIL
 from ..load_images.image_loader import ImageLoader
 from ..load_images.json_loader import JsonLoader, JsonSaver
-from ..window_manager.status_manager import StatusManager, LabelManagerText
+from ..window_manager.status_manager import LabelManagerText
 from ..window_manager.status_manager import LabelManagerPmButtons, LabelManagerLabels
 from ..image_window.main_image_window import ImageWindow, ImageWindowPmButtons
 from ..draw_and_export.drawing_tools import DrawingTools, ScrollTools, PaintToolsText
-from ..draw_and_export.drawing_tools import ExportImage
 from ..train_and_predict.prediction import ClassifierText, ClassifierButtons, FeatureSelector, TrainingSetManager, TrainingSetManagerText#, SaveLoadJSON
 from ..train_and_predict.automation import AutomationManager, AutomationManagerText, AutomationImageSelector
-#from ..draw_and_export.drawing_tools import zoomtools
 
 # Define class
 class ASM(tk.Tk):

@@ -1,13 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 20 12:58:37 2025
-
-@author: jeg_e
-"""
-"""The module manages status of on the main frame window"""
+## Load in packages
 import tkinter as tk
-from tkinter import ttk
-
 
 class FeatureSelector(tk.Frame):
     """

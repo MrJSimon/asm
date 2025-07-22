@@ -1,13 +1,11 @@
-
+## Load in packages
 from tkinter import ttk
 import tkinter as tk
 import numpy as np
 from ..randomforest_classifier.training_functions import predict_features
 import PIL.Image
 from pathlib import Path
-
 from ..image_analysis.image_analysis_tools import ensure_rgba
-
 
 class AutomationManagerText(ttk.Frame):
     """

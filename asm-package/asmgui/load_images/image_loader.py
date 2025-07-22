@@ -4,7 +4,6 @@ from pathlib import Path
 from tkinter import filedialog
 from tkinter import ttk
 import tkinter as tk
-#import cv2
 import numpy as np
 
 class ImageLoader(ttk.Frame):

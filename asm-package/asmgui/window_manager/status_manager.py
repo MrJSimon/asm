@@ -2,7 +2,6 @@
 import tkinter as tk
 from tkinter import ttk
 
-
 class StatusManager(tk.Frame):
     """
     Frame widget for managing the status of the ASM application.

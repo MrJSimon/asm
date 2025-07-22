@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jul 22 12:35:58 2025
-
-@author: jeg_e
-"""
+## Import packages
 import PIL.Image
 import PIL.ImageTk
 import PIL.Image

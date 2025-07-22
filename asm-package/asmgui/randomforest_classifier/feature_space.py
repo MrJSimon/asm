@@ -28,7 +28,6 @@ def feature_extraction(img_i, features_i):
     Returns:
         df: DataFrame containing selected features
     '''
-    import pandas as pd
 
     print('inside feature_extraction')
 
