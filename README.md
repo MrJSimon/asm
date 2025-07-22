@@ -72,6 +72,10 @@ Click the **save json** button to save the current session information in a 'con
 
 
 # Visualizations
+**asm GUI**: Comparison of the GUI steps before and after using ASM to load images, add labels, and create masks:
+<p align="center">
+  <img src="./docs/images/before_after_use.png" alt="GUI before input data" width="80%">
+</p>
 
 **asm GUI**: Graphical user interphase before segmentation
 <p align="center">
@@ -83,7 +87,7 @@ Click the **save json** button to save the current session information in a 'con
   <img src="./docs/images/GUI_2.JPG" alt="GUI after input data" width="80%">
 </p>
 
-**Prediction**: Image and it prediction
+**Prediction**: Images and associated predictions
 <p align="center">
   <img src="./docs/gifs/segmentation_preview.gif" alt="image and predition" width="70%">
 </p>
