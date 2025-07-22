@@ -1,15 +1,17 @@
-# viscoprony
-**viscoprony** is a Python package for viscoelastic material modeling. It generates Prony-series coefficients from dynamic mechanical analysis (DMA) data to describe time-dependent behavior of polymers and other viscoelastic materials.
+# ams
+**asm** is an assisted 2D image segmentation tool built with Python. It employs a Random Forest classifier for pixel-wise segmentation and provides a full-featured GUI for semi-automated workflows.
 
 # Purpose
-This tool streamlines the process of polymer and material characterization for FEA implementations (e.g., ABAQUS, ANSYS)
+ASM is designed for researchers and practitioners working in fields that utilize microscopy, scanning electron microscopy (SEM), and X-Ray imaging, where precise and efficient 2D segmentation is critical.
 
-1. Building master curves using Time-Temperature Superposition (TTS)
-2. Fitting Prony-series parameters (relaxation moduli and times) from DMA data
-3. Visualizing shift factors, storage/loss moduli, and fitted curves
+1. Quickly load and manage image datasets
+2. Create, edit, and organize training masks
+3. Extract and select features for classification
+4. Train Random Forest models and apply them to unseen images
+5. Visualize predictions and overlay segmentations
 
 # Installation
-Install **viscoprony** by cloning the repository onto your local machine using the following command
+Install **asm** by cloning the repository onto your local machine using the following command
 
     git clone https://github.com/yourusername/viscoprony.git
 
