@@ -75,12 +75,12 @@ Click the **save json** button to save the current session information in a 'con
 
 **asm GUI**: Graphical user interphase before segmentation
 <p align="center">
-  <img src="./docs/images/GUI_1.JPG" alt="GUI before input data" width="70%">
+  <img src="./docs/images/GUI_1.JPG" alt="GUI before input data" width="80%">
 </p>
 
 **asm GUI**: Graphical user interphase after segmentation 
 <p align="center">
-  <img src="./docs/images/GUI_2.JPG" alt="GUI after input data" width="70%">
+  <img src="./docs/images/GUI_2.JPG" alt="GUI after input data" width="80%">
 </p>
 
 **Prediction**: Image and it prediction
