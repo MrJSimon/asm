@@ -124,9 +124,3 @@ The `config.json` file has the following structure:
         "denoise", "Canny Edge", "Scharr"
     ]
 }
-
-
-
-
-# Documentation
-For more details, visit the Wiki (if any)
