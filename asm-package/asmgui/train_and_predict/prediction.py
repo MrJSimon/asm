@@ -172,9 +172,12 @@ class ClassifierButtons(ttk.Frame):
         # Append model to parent main
         parent.RFmodel = model
         print('training finished')
-        #🆕 Refresh Training Set Manager to show new image
+        # Refresh Training Set Manager to show new image
         if hasattr(parent, 'training_set_manager'):
             parent.training_set_manager.refresh()
+
+        # Refresh pie-chart after training
+        parent.piechart_classifier.update_from_model(parent)            
 
     @staticmethod
     def predict(parent):

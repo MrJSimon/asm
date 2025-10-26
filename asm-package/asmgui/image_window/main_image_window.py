@@ -93,22 +93,24 @@ class ImageWindow(tk.Frame):
         
         ## Convert to pil-image 
         #self.image = PIL.Image.fromarray(parent.image_f).convert("RGB")
-        self.image = parent.image_f.copy()
+        #self.image = parent.image_f.copy()
         
         
         ## Set width and height of image
-        self.width, self.height = self.image.size[0], self.image.size[1]
+        #self.width, self.height = self.image.size[0], self.image.size[1]
         
         ## Compute the offset
-        offset = self.computeoffset(self.canvas.winfo_height(),
-                                    self.canvas.winfo_width(),
-                                    self.height,self.width)
+        #offset = self.computeoffset(self.canvas.winfo_height(),
+        #                            self.canvas.winfo_width(),
+        #                            self.height,self.width)
         
         ## Set container.
-        self.container = self.canvas.create_rectangle(offset[0], offset[1], self.width+offset[0], self.height+offset[1])
+        #self.container = self.canvas.create_rectangle(offset[0], offset[1], self.width+offset[0], self.height+offset[1])
         
         ## Show image has to be initialized here otherwize
-        self.show_image(self.canvas.winfo_height(),self.canvas.winfo_height())
+        #self.show_image(self.canvas.winfo_height(),self.canvas.winfo_height())
+        
+        self.refresh_from_parent(parent)
         
 
     def computeoffset(self,bg_h,bg_w,img_h,img_w):
@@ -153,7 +155,7 @@ class ImageWindow(tk.Frame):
             if i < self.imscale: return  # 1 pixel is bigger than the visible area
             self.imscale *= self.delta
             scale        *= self.delta
-        print(x,y)
+        #print(x,y)
         self.canvas.scale('all', x, y, scale, scale)  # rescale all canvas objects
         self.show_image()
 
@@ -273,6 +275,60 @@ class ImageWindow(tk.Frame):
         
         self.show_image()
 
+    def reset_view(self):
+        ## Update canvas
+        self.canvas.update()
+
+        ## Configure the scrolls
+        #vbar.configure(command=self.scroll_y)  # bind scrollbars to the canvas
+        #hbar.configure(command=self.scroll_x)
+        self.canvas.delete("all")
+        self.container = None
+        self.image_id = None
+        self.imscale, self.delta = 1.0, 1.3
+        #self.canvas.xview_moveto(0)
+        #self.canvas.yview_moveto(0)
+
+    def refresh_from_parent(self, parent):
+        """
+        Refresh the canvas image from the parent object's current display image.
+        Used after the parent updates parent.image_f or parent.image_m.
+        """
+        # Update internal copy and redraw
+        #self.image = parent.image_f.copy()
+        #self.width, self.height = self.image.size
+        #self.show_image()
+        
+        ##
+        self.reset_view()
+        
+        self.image = parent.image_f.copy()
+           
+        ## Set width and height of image
+        self.width, self.height = self.image.size[0], self.image.size[1]
+        
+        ## Compute the offset
+        offset = self.computeoffset(self.canvas.winfo_height(),
+                                    self.canvas.winfo_width(),
+                                    self.height,self.width)
+        
+        ## Set container.
+        self.container = self.canvas.create_rectangle(offset[0], offset[1], self.width+offset[0], self.height+offset[1])
+        
+        #self.container = self.canvas.create_rectangle(offx, offy, offx + self.width, offy + self.height,outline="", width=0)
+        
+        
+        self.canvas.configure(scrollregion=(offset[0], offset[1], self.width + offset[0], self.height+offset[1]))
+        
+        ## Show image has to be initialized here otherwize
+        self.show_image(self.canvas.winfo_height(),self.canvas.winfo_height())
+        
+        
+        
+        #def reset_view(self):
+    
+        
+
 
 class ImageWindowPmButtons(ttk.Frame):
     """A frame widget that manages buttons for navigating through images.
@@ -327,7 +383,7 @@ class ImageWindowPmButtons(ttk.Frame):
         if hasattr(parent, 'image_m') and np.any(np.array(parent.image_m)):
             # Save mask
             np.save(mask_path, np.array(parent.image_m))
-            print(f"Auto-saved mask: {mask_path.name}")
+            #print(f"Auto-saved mask: {mask_path.name}")
     
             # Add to training_image_paths if not already there
             if str(parent.current_image_path) not in parent.training_image_paths:
@@ -341,7 +397,7 @@ class ImageWindowPmButtons(ttk.Frame):
             # Delete mask file from disk if it exists
             if mask_path.exists():
                 mask_path.unlink()
-                print(f"Deleted empty mask: {mask_path.name}")
+                #print(f"Deleted empty mask: {mask_path.name}")
     
             # Remove from training_image_paths and training_mask_paths
             if str(parent.current_image_path) in parent.training_image_paths:
@@ -400,7 +456,10 @@ class ImageWindowPmButtons(ttk.Frame):
             parent.image_m = PIL.Image.new("L", parent.image_c.size, 0)
     
         # Call image window to display the image
-        ImageWindow(parent)
+        #ImageWindow(parent)
+        
+        parent.image_window.refresh_from_parent(parent)
+        #refresh_from_parent
     
         # Refresh UI if Training Set Manager exists
         if hasattr(parent, 'training_set_manager'):

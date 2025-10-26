@@ -3,12 +3,15 @@ import tkinter as tk
 import PIL
 from ..load_images.image_loader import ImageLoader
 from ..load_images.json_loader import JsonLoader, JsonSaver
+from ..load_images.image_toogle import ImageToogleText
+from ..load_images.image_toogle import ImageToogle
 from ..window_manager.status_manager import LabelManagerText
 from ..window_manager.status_manager import LabelManagerPmButtons, LabelManagerLabels
 from ..image_window.main_image_window import ImageWindow, ImageWindowPmButtons
 from ..draw_and_export.drawing_tools import DrawingTools, ScrollTools, PaintToolsText
 from ..train_and_predict.prediction import ClassifierText, ClassifierButtons, FeatureSelector, TrainingSetManager, TrainingSetManagerText#, SaveLoadJSON
 from ..train_and_predict.automation import AutomationManager, AutomationManagerText, AutomationImageSelector
+from ..train_and_predict.diagnostics import DiagnosticsText, PiechartClassifier
 
 # Define class
 class ASM(tk.Tk):
@@ -72,8 +75,9 @@ class ASM(tk.Tk):
         self.zoom_mode  = "deactivated"
         
         self.features = [
-            'denoise', 'Laplacian', 'Canny Edge', 'Sobel', 'Scharr',
-            'Prewitt', 'Gaussian σ=3', 'Gaussian σ=7', 'Median size=3'
+            'Original image',"r_ctr",#"x_rel","y_rel",, # "x_ctr","y_ctr"
+            'denoise', 'Laplacian', 'Canny Edge', 'Sobel','Scharr', 'Prewitt',
+            'Gaussian σ=3', 'Gaussian σ=7', 'Median size=3'
         ]
         
         self.filedirectory = ''
@@ -116,11 +120,18 @@ class ASM(tk.Tk):
         self.training_set_manager = TrainingSetManager(self)
         self.save_load_json = JsonSaver(self)
         
+        # Widget - Diagnostics
+        self.diagnostics_text = DiagnosticsText(self)
+        self.piechart_classifier = PiechartClassifier(self)
+        
         # Widget - AutomationManager
         self.automation_manager_text = AutomationManagerText(self)
         self.automation_image_selector = AutomationImageSelector(self)
         self.automation_manager = AutomationManager(self)
 
+        # Widget - Toogle manager
+        self.image_toogle_text =  ImageToogleText(self)
+        self.image_toogle = ImageToogle(self)
 
         self.mainloop()
         
