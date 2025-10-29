@@ -44,11 +44,32 @@ class ImageToogleText(ttk.Frame):
         Args:
             parent: The parent widget.
         """
-        #HEADER TITLE
-        l = ttk.Label(self, text="Image toogle", 
-              font=('Times', 24), anchor="w", justify="left")
-        l.grid(row=0, column=0, sticky='w', padx=5, pady=(5, 10))
         
+        # Create string variable
+        self.text_var_toogle = tk.StringVar(value="Image number")
+        
+        # Create label
+        self.label = ttk.Label(self, textvariable=self.text_var_toogle, 
+              font=('Times', 24), anchor="w", justify="left")
+       
+        # Position the label inside the grid
+        self.label.grid(row=0, column=0, sticky='w', padx=5, pady=(5, 10))
+        
+    def update_widget(self, parent):
+        
+        # Get number of images, subtract one for python syntax
+        n_images = len(parent.img_filenames) - 1
+        
+        # Get image number
+        image_number = parent.img_numb
+        
+        # Create string for input in entry
+        text_var = 'Image number ' + str(image_number) + ' / ' + str(n_images)
+    
+        # Update text dynamically
+        self.text_var_toogle.set(text_var)
+        
+
 class ImageToogle(ttk.Frame):
     """
     Frame widget for automating RF predictions over all images with progress bar.
@@ -77,10 +98,6 @@ class ImageToogle(ttk.Frame):
                             padx=20, pady=0,
                             height=1,
                             command=lambda: self.run_toogle(parent))
-
-
-        # INLINE ROW FRAME
-        #frame_top = tk.Frame(self)
         
         
         #btn_run = tk.Button(self, text="Toggle image", command=lambda: self.run_toogle(parent))
@@ -90,20 +107,6 @@ class ImageToogle(ttk.Frame):
         # layout
         btn_run.pack(side='right', expand=True, fill='both')
         self.entry_box.pack(side='left', expand=True, fill='both')
-        
-        
-        
-        #self.entry_box = tk.Entry(frame_top, font=("Segoe UI", 10))
-        #self.entry_box.insert(0, "C:/Users/.../Images")
-        
-        
-        # Progress bar
-        #self.progress_bar = ttk.Progressbar(self, orient="horizontal",
-                                            #mode="determinate", maximum=100)
-        #self.progress_bar.pack(fill="x", padx=10, pady=(5, 0))
-        
-        #btn_run.pack(side='left', anchor='e', expand=True, fill='both')
-        #self.entry_box.pack(side='right', anchor='w', expand=True, fill='both')
         
         
     def run_toogle(self, parent):
@@ -130,6 +133,8 @@ class ImageToogle(ttk.Frame):
                 
                 parent.image_window.refresh_from_parent(parent)
                 
+                parent.image_toogle_text.update_widget(parent)
+                
             else:
                 # Handle non-integer float input
                 self.entry_box.delete(0, 'end')
@@ -140,80 +145,3 @@ class ImageToogle(ttk.Frame):
             #print(f"'{info}' is not a valid number.")
             self.entry_box.delete(0, 'end')
             self.entry_box.insert(0, "Please insert an integer between 0 - " + str(n_images))
-            
-        
-        #if index.is_integer():
-            
-            
-        #    setup_current_image(parent)
-            
-            
-            # # Create directory string to the mask folder
-            # masks_folder = Path(parent.filedirectory) / "output" / "masks"
-            # masks_folder.mkdir(parents=True, exist_ok=True)
-            
-            # # Get the new image
-            # img_filename = parent.img_filenames[parent.img_numb]
-            
-            # #parent.image_c = PIL.Image.open(img_filename)
-            
-            # parent.image_c = ensure_rgba(img_filename)
-            # parent.image_f = parent.image_c.copy()
-        
-            # # Set current image path
-            # parent.current_image_path = img_filename
-        
-            # # Create mask file name for new image
-            # mask_filename = Path(parent.current_image_path).stem + '_mask.npy'
-            # mask_path = masks_folder / mask_filename
-        
-            # # Check if mask exists
-            # if mask_path.exists():
-            #     print(f"Loading existing mask: {mask_path.name}")
-            #     mask_array = np.load(mask_path)
-            #     parent.image_m = PIL.Image.fromarray(mask_array.astype(np.uint8), mode="L")
-        
-            #     # Impose mask on image_f
-            #     img_array = np.array(parent.image_f)
-            #     mask_data = np.array(parent.image_m)
-        
-            #     # Replace RGB values at mask indices with corresponding colors
-            #     for label_idx, rgb in enumerate(parent.lab_color_rgb, start=1):
-            #         img_array[mask_data == label_idx, :3] = rgb  # Replace only RGB channels
-        
-            #     # Convert back to PIL after NumPy modification
-            #     parent.image_f = PIL.Image.fromarray(img_array, mode="RGBA")
-            # else:
-            #     #print(f"No mask found for {parent.current_image_path}, creating blank mask.")
-            #     parent.image_m = PIL.Image.new("L", parent.image_c.size, 0)
-        
-            # Call image window to display the image
-            
-        
-
-        
-        
-        # # Try to convert to float;
-        # try:
-        #     value = float(info)
-        # except TypeError:
-        #     oink = 2
-        
-        # if type(info) != int:
-        #     self.entry_box.delete(0, 'end')
-        #     self.entry_box.insert(0, "Please insert an integer between 0 - " + str(n_images)) 
-        
-        # else:
-        #     print('Succes will fetch image = ' + int(info))
-        
-        # Check if info is a string integer
-        #try:
-        #    check = int(info)
-            
-        
-        #print('this is entry box info' + info)
-        
-        # Get the new image
-        #img_filename = parent.img_filenames[parent.img_numb]
-        
-        #print('oink oink')

@@ -12,7 +12,6 @@ from ..image_analysis.image_analysis_tools import ensure_rgba
 
 
 
-
 def setup_current_image(parent):
     """
     Load or create a mask for the current image.

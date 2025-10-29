@@ -392,7 +392,11 @@ class ImageWindowPmButtons(ttk.Frame):
             # Add to training_mask_paths if not already there
             if str(mask_path) not in parent.training_mask_paths:
                 parent.training_mask_paths.append(str(mask_path))
-    
+                
+            # Refresh UI if Training Set Manager exists
+            if hasattr(parent, 'training_set_manager'):
+                parent.training_set_manager.refresh()
+                
         else:
             # Delete mask file from disk if it exists
             if mask_path.exists():
@@ -458,56 +462,16 @@ class ImageWindowPmButtons(ttk.Frame):
         # Call image window to display the image
         #ImageWindow(parent)
         
+        # Refresh image window
         parent.image_window.refresh_from_parent(parent)
-        #refresh_from_parent
     
         # Refresh UI if Training Set Manager exists
-        if hasattr(parent, 'training_set_manager'):
-            parent.training_set_manager.refresh()
-            
-    # @staticmethod
-    # def ensure_rgba(image_path):
-    #     """
-    #     Load an image and ensure it is in RGBA format.
-    
-    #     Args:
-    #         image_path (str or Path): Path to the image file.
-    
-    #     Returns:
-    #         PIL.Image.Image: Image converted to RGBA format.
-    #     """
-    #     # Load image
-    #     img = PIL.Image.open(image_path)
-    #     name = Path(image_path).name
-    
-    #     print(f"Loaded {name} with mode {img.mode}")
-    
-    #     if img.mode == 'RGBA':
-    #         print(f"{name}: Already RGBA")
-    #         return img
-    
-    #     elif img.mode == 'RGB':
-    #         print(f"{name}: RGB → RGBA")
-    #         return img.convert('RGBA')
-    
-    #     elif img.mode == 'L':
-    #         print(f"{name}: Grayscale (L) → RGBA")
-    #         return img.convert('RGBA')
-    
-    #     elif img.mode.startswith('I;16') or img.mode == 'I':
-    #         print(f"{name}: High bit-depth ({img.mode}) → normalize → RGBA")
-    #         # Convert to numpy array and normalize to 0-255
-    #         arr = np.array(img, dtype=np.uint16)  # Read as 16-bit array
-    #         arr_8bit = (arr / 256).astype(np.uint8)  # Scale to 8-bit range
-    #         img_8bit = PIL.Image.fromarray(arr_8bit, mode='L')  # Back to PIL Image
-    #         return img_8bit.convert('RGBA')
-    
-    #     else:
-    #         print(f"{name}: Unexpected mode ({img.mode}) → forcing RGBA")
-    #         return img.convert('RGBA')
-
-    
-
+        #if hasattr(parent, 'training_set_manager'):
+        #    parent.training_set_manager.refresh()
+        
+        # Refresh UI if image toogle text exist
+        if hasattr(parent, 'image_toogle_text'):
+           parent.image_toogle_text.update_widget(parent)
 #
 # https://stackoverflow.com/questions/69050464/zoom-into-image-with-opencv
 # https://stackoverflow.com/questions/17355902/tkinter-binding-mousewheel-to-scrollbar
